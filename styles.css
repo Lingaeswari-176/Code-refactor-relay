@@ -1,64 +1,30 @@
-/* Light theme styling */
-
+/* Background color exactly like screenshot */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", Arial, sans-serif;
-  background: linear-gradient(135deg, #fdfbfb, #ebedee);
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  background-color: #f2f7fd;  /* very light blue */
+  color: #000000;             /* black text */
 }
 
-/* Main content card */
-.container {
-  background: #ffffff;
-  padding: 40px 30px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  width: 90%;
-  max-width: 420px;
+/* Section or card background */
+.container,
+.job-card,
+section,
+div {
+  background-color: #ffffff; /* clean white */
 }
 
-/* Heading */
-h1 {
-  color: #6a5acd;
-  margin-bottom: 10px;
+/* Headings */
+h1, h2, h3, h4 {
+  color: #000000;
 }
 
-/* Subtitle */
-p {
-  font-size: 16px;
-  margin-bottom: 25px;
-  color: #555;
+/* Normal text */
+p, li, span, label {
+  color: #000000;
 }
 
-/* Question list */
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  margin: 12px 0;
-}
-
-/* Links as buttons */
-a {
-  display: block;
-  text-decoration: none;
-  background: #e6e6fa;
-  color: #4b0082;
-  padding: 12px;
-  border-radius: 25px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-a:hover {
-  background: #dcd6f7;
-  transform: scale(1.05);
+/* Divider line like screenshot */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #d6e3f3; /* soft blue-grey line */
 }
