@@ -59,18 +59,9 @@ a:hover {
 
 /* Button */
 button {
-  margin-top: 15px;
-  padding: 10px 18px;
-  background-color: #6a1bb1;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  display: none;
 }
 
-button:hover {
-  opacity: 0.9;
-}
 
 /* Mobile responsive */
 @media (max-width: 768px) {
