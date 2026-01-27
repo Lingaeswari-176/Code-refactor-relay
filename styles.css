@@ -1,30 +1,31 @@
-/* Background color exactly like screenshot */
+/* Light blue background like your reference screenshot */
+
 body {
-  background-color: #f2f7fd;  /* very light blue */
-  color: #000000;             /* black text */
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+
+  /* 👇 CLEAR light blue */
+  background-color: #eef5ff;
+
+  /* Black text */
+  color: #000000;
 }
 
-/* Section or card background */
-.container,
-.job-card,
-section,
-div {
-  background-color: #ffffff; /* clean white */
+/* White content area */
+.container {
+  background-color: #ffffff;
+  padding: 20px 25px;
+  border-radius: 4px;
+  max-width: 600px;
 }
 
 /* Headings */
-h1, h2, h3, h4 {
+h1 {
   color: #000000;
 }
 
-/* Normal text */
-p, li, span, label {
-  color: #000000;
-}
-
-/* Divider line like screenshot */
-hr {
-  border: none;
-  height: 1px;
-  background-color: #d6e3f3; /* soft blue-grey line */
+/* Links (keep readable, still blue like normal web) */
+a {
+  color: #0645ad;
 }
