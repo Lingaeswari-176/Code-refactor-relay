@@ -1,50 +1,64 @@
-/* Global styles */
+/* Light theme styling */
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #5f9ea0, #4682b4);
-  color: #fff;
-  text-align: center;
   margin: 0;
   padding: 0;
-}
-
-/* Container */
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  backdrop-filter: blur(6px);
-}
-
-/* Headers */
-h1, h2 {
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-/* Buttons */
-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 25px;
-  background: #ff7f50;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-button:hover {
-  background: #ff4500;
-  transform: scale(1.05);
-}
-
-/* Centering utility */
-.center {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content card */
+.container {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+}
+
+/* Heading */
+h1 {
+  color: #6a5acd;
+  margin-bottom: 10px;
+}
+
+/* Subtitle */
+p {
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+/* Question list */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 12px 0;
+}
+
+/* Links as buttons */
+a {
+  display: block;
+  text-decoration: none;
+  background: #e6e6fa;
+  color: #4b0082;
+  padding: 12px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  background: #dcd6f7;
+  transform: scale(1.05);
 }
