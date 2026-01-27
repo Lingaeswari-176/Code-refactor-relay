@@ -1,0 +1,32 @@
+<h2>Question 3 – Hard</h2>
+
+<p><b>Problem:</b> Write a program to sort a list of numbers using Bubble Sort.</p>
+
+<pre>
+arr = list(map(int, input().split()))
+n = len(arr)
+
+for i in range(n):
+    for j in range(0, n - i - 1):
+        if arr[j] > arr[j + 1]:
+            arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+print(arr)
+</pre>
+
+<p><b>Sample Input:</b></p>
+<pre>
+5 1 4 2 8
+</pre>
+
+<p><b>Sample Output:</b></p>
+<pre>
+[1, 2, 4, 5, 8]
+</pre>
+
+<p><b>Rules:</b></p>
+<ul>
+  <li>Use only Bubble Sort logic</li>
+  <li>Do not use built-in sorting functions</li>
+  <li>No internet or AI tools</li>
+</ul>
