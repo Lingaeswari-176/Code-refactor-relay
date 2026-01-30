@@ -1,14 +1,14 @@
 /* ===============================
    GLOBAL HACKER THEME (SAFE)
    =============================== */
-
 body {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Consolas, monospace;
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  font-family: Consolas, "Segoe UI", monospace;
+  background: linear-gradient(135deg, #0a1f44, #020617);
   color: #e5e7eb;
 }
+
 
 /* Main wrapper */
 .page {
