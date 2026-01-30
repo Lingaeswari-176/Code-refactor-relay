@@ -1,110 +1,124 @@
-/* ===============================
-   GLOBAL HACKER THEME (SAFE)
-   =============================== */
+/* ===== GLOBAL RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
 body {
   margin: 0;
   padding: 0;
   font-family: Consolas, "Segoe UI", monospace;
-  background: linear-gradient(135deg, #0a1f44, #020617);
-  color: #e5e7eb;
+  background: #020617;            /* deep black-blue */
+  color: #00ff99;                 /* hacker green */
 }
 
-
-/* Main wrapper */
+/* ===== PAGE WRAPPER ===== */
 .page {
   max-width: 1000px;
   margin: 60px auto;
   padding: 20px;
 }
 
-/* ===============================
-   HEADINGS
-   =============================== */
-
+/* ===== MAIN HEADING ===== */
 h1 {
   text-align: center;
-  color: #00ff88;          /* neon green */
   font-size: 36px;
-  margin-bottom: 8px;
-  text-shadow: 0 0 10px rgba(0,255,136,0.4);
+  color: #00ff99;
+  text-shadow: 0 0 10px rgba(0,255,153,0.6);
 }
 
 .subtitle {
   text-align: center;
-  margin-bottom: 40px;
   color: #9ca3af;
+  margin-bottom: 40px;
 }
 
-/* ===============================
-   MAIN CONTENT BOX
-   =============================== */
+/* ===== QUESTION CARDS (FRONT PAGE) ===== */
+.question {
+  background: #000000;
+  border: 1px solid #00ff99;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,255,153,0.15);
+  transition: all 0.25s ease;
+}
 
-.horizontal-box {
+.question:hover {
+  box-shadow: 0 0 25px rgba(0,255,153,0.45);
+  transform: translateY(-3px);
+}
+
+.question h3 {
+  margin: 0 0 10px 0;
+  color: #00ff99;
+}
+
+.question p {
+  color: #a7f3d0;
+}
+
+/* ===== INSIDE QUESTION PAGE ===== */
+.problem-box {
+  background: #000000;
+  border: 1px solid #00ff99;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,255,153,0.2);
+}
+
+/* Problem headings */
+.problem-box h2,
+.problem-box h3 {
+  color: #00ff99;
+}
+
+/* ===== CODE BLOCK ===== */
+pre {
   background: #020617;
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 30px 40px;
-  border-radius: 12px;
-  border: 1px solid #00ff88;
-  box-shadow: 0 0 20px rgba(0,255,136,0.15);
+  color: #00ff99;
+  padding: 15px;
+  border-left: 4px solid #00ff99;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 15px;
 }
 
-/* Left & Right sections */
-.left, .right {
-  width: 50%;
+code {
+  font-family: Consolas, monospace;
 }
 
-/* ===============================
-   LINKS
-   =============================== */
-
-ul {
-  padding-left: 20px;
-}
-
+/* ===== LINKS ===== */
 a {
-  color: #00ff88;
+  color: #00ff99;
   text-decoration: none;
-  font-weight: 500;
 }
 
 a:hover {
-  text-shadow: 0 0 8px rgba(0,255,136,0.6);
   text-decoration: underline;
+  text-shadow: 0 0 8px rgba(0,255,153,0.6);
 }
 
-/* Hide unused buttons */
+/* ===== BUTTONS ===== */
 button {
-  display: none;
+  background: transparent;
+  border: 1px solid #00ff99;
+  color: #00ff99;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: Consolas, monospace;
 }
 
-/* ===============================
-   MOBILE RESPONSIVE
-   =============================== */
+button:hover {
+  background: #00ff99;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0,255,153,0.6);
+}
 
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .horizontal-box {
-    flex-direction: column;
+  .page {
+    margin: 30px auto;
   }
-
-  .left, .right {
-    width: 100%;
-  }
-}
-
-/* ===============================
-   QUESTION PAGE COLORS (UNCHANGED)
-   =============================== */
-
-.q1 {
-  background-color: #fff7f0;   /* light coral */
-}
-
-.q2 {
-  background-color: #f0f4ff;   /* light blue */
-}
-
-.q3 {
-  background-color: #f1fff6;   /* light green */
 }
