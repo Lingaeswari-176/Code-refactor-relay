@@ -32,14 +32,16 @@ body {
   margin: 60px auto;
   padding: 20px;
 }
+h1 {
+  color: #34ff9b;
+  text-shadow:
+    0 0 10px #34ff9b,
+    0 0 20px #00ffaa,
+    0 0 40px #00ffaa;
+}
 
 /* ===== MAIN HEADING ===== */
-h1 {
-  text-align: center;
-  font-size: 36px;
-  color: #00ff99;
-  text-shadow: 0 0 10px rgba(0,255,153,0.6);
-}
+
 
 .subtitle {
   text-align: center;
@@ -57,6 +59,18 @@ h1 {
   box-shadow: 0 0 15px rgba(0,255,153,0.15);
   transition: all 0.25s ease;
 }
+.main-container {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(0, 255, 170, 0.25);
+
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
 
 .question:hover {
   box-shadow: 0 0 25px rgba(0,255,153,0.45);
