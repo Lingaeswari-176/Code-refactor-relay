@@ -35,33 +35,87 @@ h1 {
   justify-content: space-between;
   gap: 40px;
   padding: 30px 40px;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Left & Right sections */
-.left, .right {
+.left,
+.right {
   width: 50%;
 }
 
-/* Links */
+/* Section headings */
+.left p strong,
+.right p strong {
+  font-size: 18px;
+  color: #4b2ca3;
+}
+
+/* Lists */
 ul {
   padding-left: 20px;
 }
 
+li {
+  margin-bottom: 10px;
+}
+
+/* Links */
 a {
   color: #4b2ca3;
   text-decoration: none;
+  font-weight: 500;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-/* Button */
+/* Question pages common style */
+.question-box {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Question background variations */
+.q1 {
+  background-color: #fff7f0; /* light coral tone */
+  border-left: 6px solid #ff8a65;
+}
+
+.q2 {
+  background-color: #f0f4ff; /* light blue tone */
+  border-left: 6px solid #5c7cfa;
+}
+
+.q3 {
+  background-color: #f1fff6; /* light green tone */
+  border-left: 6px solid #2ecc71;
+}
+
+/* Code blocks */
+pre {
+  background-color: #1e1e2f;
+  color: #e6e6f0;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+}
+
+/* Rules list */
+ul li {
+  line-height: 1.6;
+}
+
+/* Button (hidden for now) */
 button {
   display: none;
 }
-
 
 /* Mobile responsive */
 @media (max-width: 768px) {
@@ -69,22 +123,12 @@ button {
     flex-direction: column;
   }
 
-  .left, .right {
+  .left,
+  .right {
     width: 100%;
   }
-}
-/* Q1 center alignment + color tweak */
 
-
-/* Question background variations (index-style) */
-.q1 {
-  background-color: #fff7f0;   /* light coral tone */
-}
-
-.q2 {
-  background-color: #f0f4ff;   /* light blue tone */
-}
-
-.q3 {
-  background-color: #f1fff6;   /* light green tone */
+  h1 {
+    font-size: 28px;
+  }
 }
