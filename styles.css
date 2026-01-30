@@ -1,10 +1,13 @@
-/* Page background inspired from screenshot */
+/* ===============================
+   GLOBAL HACKER THEME (SAFE)
+   =============================== */
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(135deg, #f6e9ff, #eef2ff);
-  color: #000;
+  font-family: "Segoe UI", Consolas, monospace;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: #e5e7eb;
 }
 
 /* Main wrapper */
@@ -14,121 +17,94 @@ body {
   padding: 20px;
 }
 
-/* Heading */
+/* ===============================
+   HEADINGS
+   =============================== */
+
 h1 {
   text-align: center;
-  color: #6a1bb1;
+  color: #00ff88;          /* neon green */
   font-size: 36px;
   margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(0,255,136,0.4);
 }
 
 .subtitle {
   text-align: center;
   margin-bottom: 40px;
-  color: #333;
+  color: #9ca3af;
 }
 
-/* Horizontal content box */
+/* ===============================
+   MAIN CONTENT BOX
+   =============================== */
+
 .horizontal-box {
-  background: #ffffff;
+  background: #020617;
   display: flex;
   justify-content: space-between;
   gap: 40px;
   padding: 30px 40px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #00ff88;
+  box-shadow: 0 0 20px rgba(0,255,136,0.15);
 }
 
 /* Left & Right sections */
-.left,
-.right {
+.left, .right {
   width: 50%;
 }
 
-/* Section headings */
-.left p strong,
-.right p strong {
-  font-size: 18px;
-  color: #4b2ca3;
-}
+/* ===============================
+   LINKS
+   =============================== */
 
-/* Lists */
 ul {
   padding-left: 20px;
 }
 
-li {
-  margin-bottom: 10px;
-}
-
-/* Links */
 a {
-  color: #4b2ca3;
+  color: #00ff88;
   text-decoration: none;
   font-weight: 500;
 }
 
 a:hover {
+  text-shadow: 0 0 8px rgba(0,255,136,0.6);
   text-decoration: underline;
 }
 
-/* Question pages common style */
-.question-box {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 25px 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-/* Question background variations */
-.q1 {
-  background-color: #fff7f0; /* light coral tone */
-  border-left: 6px solid #ff8a65;
-}
-
-.q2 {
-  background-color: #f0f4ff; /* light blue tone */
-  border-left: 6px solid #5c7cfa;
-}
-
-.q3 {
-  background-color: #f1fff6; /* light green tone */
-  border-left: 6px solid #2ecc71;
-}
-
-/* Code blocks */
-pre {
-  background-color: #1e1e2f;
-  color: #e6e6f0;
-  padding: 15px;
-  border-radius: 8px;
-  overflow-x: auto;
-  font-size: 14px;
-}
-
-/* Rules list */
-ul li {
-  line-height: 1.6;
-}
-
-/* Button (hidden for now) */
+/* Hide unused buttons */
 button {
   display: none;
 }
 
-/* Mobile responsive */
+/* ===============================
+   MOBILE RESPONSIVE
+   =============================== */
+
 @media (max-width: 768px) {
   .horizontal-box {
     flex-direction: column;
   }
 
-  .left,
-  .right {
+  .left, .right {
     width: 100%;
   }
+}
 
-  h1 {
-    font-size: 28px;
-  }
+/* ===============================
+   QUESTION PAGE COLORS (UNCHANGED)
+   =============================== */
+
+.q1 {
+  background-color: #fff7f0;   /* light coral */
+}
+
+.q2 {
+  background-color: #f0f4ff;   /* light blue */
+}
+
+.q3 {
+  background-color: #f1fff6;   /* light green */
 }
