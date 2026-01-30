@@ -7,10 +7,24 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Consolas, "Segoe UI", monospace;
-  background: #020617;            /* deep black-blue */
-  color: #00ff99;                 /* hacker green */
+  min-height: 100vh;
+
+  background-image: 
+    linear-gradient(
+      rgba(2, 6, 23, 0.85),
+      rgba(2, 6, 23, 0.85)
+    ),
+    url("hacker-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  color: #a7f3d0;
+  font-family: "JetBrains Mono", monospace;
 }
+
 
 /* ===== PAGE WRAPPER ===== */
 .page {
