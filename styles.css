@@ -136,7 +136,27 @@ a:hover {
   text-decoration: underline;
   text-shadow: 0 0 8px rgba(0,255,153,0.6);
 }
-/* ===== FRONT PAGE BULLET FIX ===== */
+/* ===== FRONT PAGE QUESTION ARROWS ===== */
+.page ul li {
+  position: relative;
+  margin: 12px 0;
+}
+
+/* Arrow before question */
+.page ul li a::before {
+  content: "➜";
+  margin-right: 10px;
+  color: #00ff99;
+  font-weight: bold;
+  display: inline-block;
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
+}
+
+/* Hover effect */
+.page ul li a:hover::before {
+  transform: translateX(5px);
+  text-shadow: 0 0 8px #00ff99;
+}
 
 
 /* ===== BUTTONS ===== */
