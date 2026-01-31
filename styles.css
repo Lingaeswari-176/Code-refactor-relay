@@ -127,6 +127,13 @@ a:hover {
   text-shadow: 0 0 8px rgba(0,255,153,0.6);
 }
 
+.page ul li::before {
+  content: "▸ ";
+  color: #00ff99;
+  font-weight: bold;
+}
+
+
 /* ===== BUTTONS ===== */
 button {
   background: transparent;
