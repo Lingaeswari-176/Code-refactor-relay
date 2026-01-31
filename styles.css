@@ -32,6 +32,16 @@ body {
   margin: 60px auto;
   padding: 20px;
 }
+
+/* Fix bullet issue on front page */
+.page ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+  
+}
 h1 {
   color: #34ff9b;
   text-shadow:
@@ -127,16 +137,6 @@ a:hover {
   text-shadow: 0 0 8px rgba(0,255,153,0.6);
 }
 /* ===== FRONT PAGE BULLET FIX ===== */
-.page ul {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-.page ul li {
-  margin: 8px 0;
-}
-
 
 
 /* ===== BUTTONS ===== */
