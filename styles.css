@@ -171,6 +171,50 @@ button:hover {
   box-shadow: 0 0 15px rgba(0,255,153,0.6);
 }
 
+/* ===== FRONT PAGE QUESTION ARROWS (FOR YOUR HTML) ===== */
+
+/* Make question links look like cards */
+.left ul li a {
+  display: block;
+  padding: 14px 18px;
+  border: 1px solid #00ff99;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  position: relative;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Arrow on right side */
+.left ul li a::after {
+  content: "➜";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #00ff99;
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
+}
+
+/* Hover effect */
+.left ul li a:hover {
+  background: rgba(0, 255, 153, 0.08);
+  box-shadow: 0 0 15px rgba(0, 255, 153, 0.35);
+}
+
+.left ul li a:hover::after {
+  transform: translate(6px, -50%);
+  text-shadow: 0 0 10px #00ff99;
+}
+
+/* Remove bullets cleanly */
+.left ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .page {
