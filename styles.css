@@ -126,12 +126,17 @@ a:hover {
   text-decoration: underline;
   text-shadow: 0 0 8px rgba(0,255,153,0.6);
 }
-
-.page ul li::before {
-  content: "▸ ";
-  color: #00ff99;
-  font-weight: bold;
+/* ===== FRONT PAGE BULLET FIX ===== */
+.page ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
 }
+
+.page ul li {
+  margin: 8px 0;
+}
+
 
 
 /* ===== BUTTONS ===== */
