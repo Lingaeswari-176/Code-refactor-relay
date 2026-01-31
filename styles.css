@@ -9,7 +9,7 @@ body {
   padding: 0;
   min-height: 100vh;
 
-  background-image: 
+  background-image:
     linear-gradient(
       rgba(2, 6, 23, 0.85),
       rgba(2, 6, 23, 0.85)
@@ -25,7 +25,6 @@ body {
   font-family: "JetBrains Mono", monospace;
 }
 
-
 /* ===== PAGE WRAPPER ===== */
 .page {
   max-width: 1000px;
@@ -33,15 +32,7 @@ body {
   padding: 20px;
 }
 
-/* Fix bullet issue on front page */
-.page ul {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-  
-}
+/* ===== HEADINGS ===== */
 h1 {
   color: #34ff9b;
   text-shadow:
@@ -50,25 +41,13 @@ h1 {
     0 0 40px #00ffaa;
 }
 
-/* ===== MAIN HEADING ===== */
-
-
 .subtitle {
   text-align: center;
   color: #9ca3af;
   margin-bottom: 40px;
 }
 
-/* ===== QUESTION CARDS (FRONT PAGE) ===== */
-.question {
-  background: #000000;
-  border: 1px solid #00ff99;
-  padding: 20px;
-  margin-bottom: 25px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0,255,153,0.15);
-  transition: all 0.25s ease;
-}
+/* ===== MAIN CONTAINER ===== */
 .main-container {
   background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(6px);
@@ -81,6 +60,17 @@ h1 {
   text-align: center;
 }
 
+/* ===== FRONT PAGE QUESTION CARDS ===== */
+.question {
+  background: #000000;
+  border: 1px solid #00ff99;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,255,153,0.15);
+  transition: all 0.25s ease;
+  position: relative;
+}
 
 .question:hover {
   box-shadow: 0 0 25px rgba(0,255,153,0.45);
@@ -96,6 +86,34 @@ h1 {
   color: #a7f3d0;
 }
 
+/* ===== ARROW ICON ON QUESTIONS ===== */
+.question::after {
+  content: "➜";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: #00ff99;
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
+}
+
+.question:hover::after {
+  transform: translate(6px, -50%);
+  text-shadow: 0 0 10px #00ff99;
+}
+
+/* ===== FIX FRONT PAGE BULLETS ===== */
+.page ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.page ul li {
+  margin: 10px 0;
+}
+
 /* ===== INSIDE QUESTION PAGE ===== */
 .problem-box {
   background: #000000;
@@ -105,7 +123,6 @@ h1 {
   box-shadow: 0 0 20px rgba(0,255,153,0.2);
 }
 
-/* Problem headings */
 .problem-box h2,
 .problem-box h3 {
   color: #00ff99;
@@ -136,28 +153,6 @@ a:hover {
   text-decoration: underline;
   text-shadow: 0 0 8px rgba(0,255,153,0.6);
 }
-/* ===== FRONT PAGE QUESTION ARROWS ===== */
-.page ul li {
-  position: relative;
-  margin: 12px 0;
-}
-
-/* Arrow before question */
-.page ul li a::before {
-  content: "➜";
-  margin-right: 10px;
-  color: #00ff99;
-  font-weight: bold;
-  display: inline-block;
-  transition: transform 0.25s ease, text-shadow 0.25s ease;
-}
-
-/* Hover effect */
-.page ul li a:hover::before {
-  transform: translateX(5px);
-  text-shadow: 0 0 8px #00ff99;
-}
-
 
 /* ===== BUTTONS ===== */
 button {
@@ -180,5 +175,9 @@ button:hover {
 @media (max-width: 768px) {
   .page {
     margin: 30px auto;
+  }
+
+  .question::after {
+    right: 12px;
   }
 }
