@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Question 3 – Code Refactor Relay</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -43,8 +44,36 @@ print(arr)
         <li>No internet or AI tools</li>
       </ul>
 
+      <!-- ACTION BUTTONS -->
+      <div class="actions">
+        <button onclick="submitHard()">Submit Final Answer</button>
+        <button onclick="finishChallenge()">Finish Challenge</button>
+      </div>
+
     </div>
   </div>
+
+  <!-- SCRIPT SECTION -->
+  <script>
+    /* 🔒 PROTECT LEVEL 3 */
+    if (localStorage.getItem("mediumDone") !== "yes") {
+      alert("❌ Please complete Level 2 first.");
+      window.location.href = "q2.html";
+    }
+
+    /* 📤 GOOGLE FORM REDIRECT */
+    function submitHard() {
+      window.open("https://forms.gle/YOUR_GOOGLE_FORM_LINK", "_blank");
+    }
+
+    /* ✅ FINAL COMPLETION */
+    function finishChallenge() {
+      localStorage.setItem("hardDone", "yes");
+      alert("🎉 Challenge Completed Successfully!\nThank you for participating.");
+      // Optional redirect:
+      // window.location.href = "thankyou.html";
+    }
+  </script>
 
 </body>
 </html>
