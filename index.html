@@ -8,37 +8,85 @@
 <body>
   <div class="page">
     <div class="main-container">
-  
-    
-    
 
-    <h1>Code Refactor Relay</h1>
-    <p class="subtitle">Select your question and start solving</p>
+      <h1>Code Refactor Relay</h1>
+      <p class="subtitle">Select your question and start solving</p>
 
-    <div class="horizontal-box">
+      <div class="horizontal-box">
 
-      <div class="left">
-        <p><strong>Available Questions</strong></p>
-        <ul>
-          <li><a href="q1.html" class="q1">Question 1 – Easy</a></li>
-          <li><a href="q2.html" class="q2">Question 2 – Medium</a></li>
-          <li><a href="q3.html" class="q3">Question 3 – Hard</a></li>
-        </ul>
+        <div class="left">
+          <p><strong>Available Questions</strong></p>
+          <ul>
+            <li>
+              <a href="q1.html" class="q1">Question 1 – Easy</a>
+            </li>
+
+            <li>
+              <a href="#" class="q2 locked" onclick="goQ2(event)">
+                🔒 Question 2 – Medium
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="q3 locked" onclick="goQ3(event)">
+                🔒 Question 3 – Hard
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="right">
+          <p><strong>Instructions</strong></p>
+          <p>
+            Choose a question based on difficulty and start coding.
+            <br>
+            Happy learning!
+          </p>
+        </div>
+
       </div>
-      </div>
-
-      <div class="right">
-        <p><strong>Instructions</strong></p>
-        <p>
-          Choose a question based on difficulty and start coding.
-          <br>
-          Happy learning!
-        </p>
-      </div>
-
     </div>
-
   </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function goQ2(event) {
+      if (localStorage.getItem("easyDone") === "yes") {
+        window.location.href = "q2.html";
+      } else {
+        event.preventDefault();
+        alert("❌ Complete Question 1 to unlock Question 2");
+      }
+    }
+
+    function goQ3(event) {
+      if (localStorage.getItem("mediumDone") === "yes") {
+        window.location.href = "q3.html";
+      } else {
+        event.preventDefault();
+        alert("❌ Complete Question 2 to unlock Question 3");
+      }
+    }
+
+    // Update UI on page load
+    window.onload = function () {
+      if (localStorage.getItem("easyDone") === "yes") {
+        const q2 = document.querySelector(".q2");
+        q2.classList.remove("locked");
+        q2.textContent = "Question 2 – Medium";
+        q2.href = "q2.html";
+        q2.onclick = null;
+      }
+
+      if (localStorage.getItem("mediumDone") === "yes") {
+        const q3 = document.querySelector(".q3");
+        q3.classList.remove("locked");
+        q3.textContent = "Question 3 – Hard";
+        q3.href = "q3.html";
+        q3.onclick = null;
+      }
+    };
+  </script>
+
 </body>
 </html>
-
