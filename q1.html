@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Question 1 – Code Refactor Relay</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -36,8 +37,29 @@ print(total)
         <li>No internet or AI tools</li>
       </ul>
 
+      <!-- ACTION BUTTONS -->
+      <div class="actions">
+        <button onclick="submitEasy()">Submit Answer</button>
+        <button onclick="confirmEasy()">I have submitted</button>
+      </div>
+
     </div>
   </div>
+
+  <!-- SCRIPT SECTION -->
+  <script>
+    // Redirect to Google Form
+    function submitEasy() {
+      window.open("https://forms.gle/YOUR_GOOGLE_FORM_LINK", "_blank");
+    }
+
+    // Confirm submission and unlock Level 2
+    function confirmEasy() {
+      localStorage.setItem("easyDone", "yes");
+      alert("✅ Level 1 completed! Level 2 unlocked.");
+      window.location.href = "q2.html"; // Level 2 page
+    }
+  </script>
 
 </body>
 </html>
