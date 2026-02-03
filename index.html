@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Code Refactor Relay</title>
+  <title>RefactorX</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -10,10 +10,11 @@
     <div class="main-container">
 
       <h1>Code Refactor Relay</h1>
-      <p class="subtitle">Select your question and start solving</p>
+      <p class="subtitle">Where messy code meets sharp minds</p>
 
       <div class="horizontal-box">
 
+        <!-- LEFT SIDE -->
         <div class="left">
           <p><strong>Available Questions</strong></p>
           <ul>
@@ -35,20 +36,20 @@
           </ul>
         </div>
 
+        <!-- RIGHT SIDE -->
         <div class="right">
           <p><strong>📌 Event Guidelines</strong></p>
-          <p>
-          
 
-• Refactor the given code without changing the output
-• No Internet / AI tools / external help allowed
-• Only refactoring permitted (logic & output must remain same)
-• Use Python only
-• Clean, readable & optimized code will be rewarded
-• Plagiarism or rule violation leads to disqualification
-            <br>
-            Happy learning!
-          </p>
+          <ul class="guidelines-list">
+            <li>Refactor the given code <strong>without changing the output</strong></li>
+            <li><strong>No Internet / AI tools / external help</strong> allowed</li>
+            <li>Only <strong>refactoring</strong> permitted (logic & output must remain same)</li>
+            <li>Use <strong>Python only</strong></li>
+            <li>Clean, readable & optimized code will be rewarded</li>
+            <li>Plagiarism or rule violation leads to <strong>disqualification</strong></li>
+          </ul>
+
+          <p class="happy">Happy learning!</p>
         </div>
 
       </div>
@@ -75,7 +76,6 @@
       }
     }
 
-    // Update UI on page load
     window.onload = function () {
       if (localStorage.getItem("easyDone") === "yes") {
         const q2 = document.querySelector(".q2");
