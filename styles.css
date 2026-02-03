@@ -34,6 +34,7 @@ body {
 
 /* ===== HEADINGS ===== */
 h1 {
+  text-align: center;
   color: #34ff9b;
   text-shadow:
     0 0 10px #34ff9b,
@@ -54,81 +55,122 @@ h1 {
   padding: 40px;
   border-radius: 18px;
   box-shadow: 0 0 40px rgba(0, 255, 170, 0.25);
-
   max-width: 900px;
   margin: auto;
-  text-align: center;
+  text-align: center; /* keep center globally */
 }
 
-/* ===== FRONT PAGE QUESTION CARDS ===== */
-.question {
-  background: #000000;
+/* ===== TWO COLUMN LAYOUT FIX ===== */
+.horizontal-box {
+  display: flex;
+  gap: 30px;
+  align-items: stretch;
+}
+
+.left,
+.right {
+  width: 50%;
+  text-align: left; /* 🔥 override center */
+}
+
+/* ===== LEFT : QUESTIONS ===== */
+.left ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left ul li {
+  margin-bottom: 12px;
+}
+
+.left ul li a {
+  display: block;
+  padding: 14px 18px;
   border: 1px solid #00ff99;
-  padding: 20px;
-  margin-bottom: 25px;
   border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0,255,153,0.15);
-  transition: all 0.25s ease;
   position: relative;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
-.question:hover {
-  box-shadow: 0 0 25px rgba(0,255,153,0.45);
-  transform: translateY(-3px);
-}
-
-.question h3 {
-  margin: 0 0 10px 0;
-  color: #00ff99;
-}
-
-.question p {
-  color: #a7f3d0;
-}
-
-/* ===== ARROW ICON ON QUESTIONS ===== */
-.question::after {
+.left ul li a::after {
   content: "➜";
   position: absolute;
   right: 18px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 22px;
+  font-size: 20px;
   color: #00ff99;
   transition: transform 0.25s ease, text-shadow 0.25s ease;
 }
 
-.question:hover::after {
+.left ul li a:hover {
+  background: rgba(0, 255, 153, 0.08);
+  box-shadow: 0 0 15px rgba(0, 255, 153, 0.35);
+}
+
+.left ul li a:hover::after {
   transform: translate(6px, -50%);
   text-shadow: 0 0 10px #00ff99;
 }
 
-/* ===== FIX FRONT PAGE BULLETS ===== */
-.page ul {
+.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===== RIGHT : TERMINAL GUIDELINES ===== */
+.right {
+  background: #000;
+  border: 1px solid #00ff99;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: inset 0 0 15px rgba(0,255,153,0.25);
+}
+
+/* Center only title + footer */
+.right p strong,
+.right .terminal-title,
+.right .happy {
+  display: block;
+  text-align: center;
+}
+
+/* ===== NEON BULLETS ===== */
+.guidelines-list {
   list-style: none;
   padding-left: 0;
-  margin-left: 0;
+  margin: 20px 0;
 }
 
-.page ul li {
-  margin: 10px 0;
+.guidelines-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  text-align: left;
+  line-height: 1.6;
 }
 
-/* ===== INSIDE QUESTION PAGE ===== */
-.problem-box {
-  background: #000000;
-  border: 1px solid #00ff99;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,255,153,0.2);
-}
-
-.problem-box h2,
-.problem-box h3 {
+/* Neon dot */
+.guidelines-list li::before {
+  content: "●";
+  position: absolute;
+  left: 0;
+  top: 3px;
   color: #00ff99;
+  text-shadow:
+    0 0 8px #00ff99,
+    0 0 16px #00ff99;
 }
 
-/* ===== CODE BLOCK ===== */
+/* ===== HAPPY TEXT ===== */
+.happy {
+  margin-top: 15px;
+  color: #9affc9;
+  font-style: italic;
+}
+
+/* ===== CODE BLOCKS ===== */
 pre {
   background: #020617;
   color: #00ff99;
@@ -171,57 +213,18 @@ button:hover {
   box-shadow: 0 0 15px rgba(0,255,153,0.6);
 }
 
-/* ===== FRONT PAGE QUESTION ARROWS (FOR YOUR HTML) ===== */
-
-/* Make question links look like cards */
-.left ul li a {
-  display: block;
-  padding: 14px 18px;
-  border: 1px solid #00ff99;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  position: relative;
-  transition: background 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Arrow on right side */
-.left ul li a::after {
-  content: "➜";
-  position: absolute;
-  right: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: #00ff99;
-  transition: transform 0.25s ease, text-shadow 0.25s ease;
-}
-
-/* Hover effect */
-.left ul li a:hover {
-  background: rgba(0, 255, 153, 0.08);
-  box-shadow: 0 0 15px rgba(0, 255, 153, 0.35);
-}
-
-.left ul li a:hover::after {
-  transform: translate(6px, -50%);
-  text-shadow: 0 0 10px #00ff99;
-}
-
-/* Remove bullets cleanly */
-.left ul {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  .horizontal-box {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
   .page {
     margin: 30px auto;
   }
-
-  .question::after {
-    right: 12px;
   }
-}
