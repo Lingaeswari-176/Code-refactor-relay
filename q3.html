@@ -63,7 +63,85 @@ print(arr)
 
     /* 📤 GOOGLE FORM REDIRECT */
     function submitHard() {
+      window.open("<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Question 3 – Code Refactor Relay</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class="page">
+    <div class="problem-box q3">
+
+      <h2>Question 3 – Hard</h2>
+
+      <p><b>Problem:</b> Write a program to sort a list of numbers using Bubble Sort.</p>
+
+      <pre>
+arr = list(map(int, input().split()))
+n = len(arr)
+
+for i in range(n):
+    for j in range(0, n - i - 1):
+        if arr[j] > arr[j + 1]:
+            arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+print(arr)
+      </pre>
+
+      <p><b>Sample Input:</b></p>
+      <pre>
+5 1 4 2 8
+      </pre>
+
+      <p><b>Sample Output:</b></p>
+      <pre>
+[1, 2, 4, 5, 8]
+      </pre>
+
+      <p><b>Rules:</b></p>
+      <ul>
+        <li>Use only Bubble Sort logic</li>
+        <li>Do not use built-in sorting functions</li>
+        <li>No internet or AI tools</li>
+      </ul>
+
+      <!-- ACTION BUTTONS -->
+      <div class="actions">
+        <button onclick="submitHard()">Submit Final Answer</button>
+        <button onclick="finishChallenge()">Finish Challenge</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT SECTION -->
+  <script>
+    /* 🔒 PROTECT LEVEL 3 */
+    if (localStorage.getItem("mediumDone") !== "yes") {
+      alert("❌ Please complete Level 2 first.");
+      window.location.href = "q2.html";
+    }
+
+    /* 📤 GOOGLE FORM REDIRECT */
+    function submitHard() {
       window.open("https://forms.gle/kWeE83DDU9y5MZG2A", "_blank");
+    }
+
+    /* ✅ FINAL COMPLETION */
+    function finishChallenge() {
+      localStorage.setItem("hardDone", "yes");
+      alert("🎉 Challenge Completed Successfully!\nThank you for participating.");
+      // Optional redirect:
+      // window.location.href = "thankyou.html";
+    }
+  </script>
+
+</body>
+</html>", "_blank");
     }
 
     /* ✅ FINAL COMPLETION */
