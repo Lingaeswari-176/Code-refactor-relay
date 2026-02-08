@@ -13,27 +13,47 @@
 
       <h2>Question 1 – Easy</h2>
 
-      <p><b>Problem:</b> Refactor the following code without changing the output.</p>
+      <p><b>Problem:</b> Refactor the following code without changing its output.</p>
 
       <pre>
-n = int(input())
-total = 0
-for i in range(0, n):
-    if i % 2 == 0:
-        total = total + i
-print(total)
+# Intentionally bad code
+def longestCommonPrefix(strs):
+    if len(strs) == 0:
+        return ""
+    
+    prefix = strs[0]
+    index = 0
+    
+    while index < len(prefix):
+        ch = prefix[index]
+        
+        for word in strs:
+            if index >= len(word):
+                prefix = prefix[:index]
+                return prefix
+            
+            if word[index] != ch:
+                prefix = prefix[:index]
+                return prefix
+        
+        index = index + 1
+    
+    return prefix
+
+strings = ["flower", "flow", "flight"]
+print(longestCommonPrefix(strings))
       </pre>
 
-      <p><b>Sample Input:</b></p>
-      <pre>10</pre>
-
-      <p><b>Sample Output:</b></p>
-      <pre>20</pre>
+      <p><b>Expected Output:</b></p>
+      <pre>
+fl
+      </pre>
 
       <p><b>Rules:</b></p>
       <ul>
-        <li>Do not change output</li>
-        <li>Refactor only</li>
+        <li>Do not change the output</li>
+        <li>Improve readability / logic only</li>
+        <li>No built-in shortcut functions</li>
         <li>No internet or AI tools</li>
       </ul>
 
@@ -48,16 +68,16 @@ print(total)
 
   <!-- SCRIPT SECTION -->
   <script>
-    // Redirect to Google Form
+    /* 📤 GOOGLE FORM SUBMISSION */
     function submitEasy() {
       window.open("https://forms.gle/yfE7m8bz8CfhAYGSA", "_blank");
     }
 
-    // Confirm submission and unlock Level 2
+    /* 🔓 UNLOCK LEVEL 2 */
     function confirmEasy() {
       localStorage.setItem("easyDone", "yes");
       alert("✅ Level 1 completed! Level 2 unlocked.");
-      window.location.href = "q2.html"; // Level 2 page
+      window.location.href = "q2.html";
     }
   </script>
 
