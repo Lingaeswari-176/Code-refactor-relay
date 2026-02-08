@@ -13,34 +13,63 @@
 
       <h2>Question 3 – Hard</h2>
 
-      <p><b>Problem:</b> Write a program to sort a list of numbers using Bubble Sort.</p>
+      <p>
+        <b>Problem:</b> Refactor the following program that schedules jobs to
+        maximize total profit. Each job has a deadline and a profit.
+        Each job takes 1 unit of time, and only one job can be scheduled at a time.
+        <br><br>
+        <b>The output must remain unchanged.</b>
+      </p>
 
       <pre>
-arr = list(map(int, input().split()))
-n = len(arr)
+def schedule(jobs):
+    total = 0
+    maxd = 0
 
-for i in range(n):
-    for j in range(0, n - i - 1):
-        if arr[j] > arr[j + 1]:
-            arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    for i in range(len(jobs)):
+        if jobs[i][1] > maxd:
+            maxd = jobs[i][1]
 
-print(arr)
+    slots = [-1] * maxd
+
+    for i in range(len(jobs)):
+        for j in range(i + 1, len(jobs)):
+            if jobs[i][2] < jobs[j][2]:
+                jobs[i], jobs[j] = jobs[j], jobs[i]
+
+    for i in range(len(jobs)):
+        d = jobs[i][1]
+        while d > 0:
+            if slots[d - 1] == -1:
+                slots[d - 1] = jobs[i][0]
+                total = total + jobs[i][2]
+                break
+            d = d - 1
+
+    return total
+
+
+jobs = [
+    ('A', 2, 100),
+    ('B', 1, 19),
+    ('C', 2, 27),
+    ('D', 1, 25),
+    ('E', 3, 15)
+]
+
+print(schedule(jobs))
       </pre>
 
-      <p><b>Sample Input:</b></p>
+      <p><b>Expected Output:</b></p>
       <pre>
-5 1 4 2 8
-      </pre>
-
-      <p><b>Sample Output:</b></p>
-      <pre>
-[1, 2, 4, 5, 8]
+142
       </pre>
 
       <p><b>Rules:</b></p>
       <ul>
-        <li>Use only Bubble Sort logic</li>
-        <li>Do not use built-in sorting functions</li>
+        <li>Do not change the output</li>
+        <li>Only refactoring is allowed</li>
+        <li>Logic must remain equivalent</li>
         <li>No internet or AI tools</li>
       </ul>
 
@@ -61,7 +90,7 @@ print(arr)
       window.location.href = "q2.html";
     }
 
-    /* 📤 GOOGLE FORM REDIRECT */
+    /* 📤 GOOGLE FORM SUBMISSION */
     function submitHard() {
       window.open("https://forms.gle/ze7ZG3FtASNffHGu7", "_blank");
     }
