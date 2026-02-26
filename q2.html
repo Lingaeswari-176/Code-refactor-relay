@@ -22,6 +22,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    display: none; /* Hidden until access granted */
 }
 
 pre {
@@ -79,25 +80,31 @@ button:disabled {
     justify-content: center;
     z-index: 1000;
 }
+
+/* Access Screen */
+#accessScreen {
+    text-align: center;
+    margin-top: 100px;
+}
 </style>
 </head>
 
 <body>
 
-<script>
-/* 🔒 HARD LOCK FOR ROUND 2 */
-if (localStorage.getItem("round2Access") !== "granted") {
-    alert("⛔ Round 2 is locked. Only selected teams can access.");
-    window.location.href = "q1.html";
-}
-</script>
+<!-- ACCESS SCREEN -->
+<div id="accessScreen">
+    <h2>🔐 Round 2 Access</h2>
+    <p>Enter Access Code to continue</p>
+    <input type="password" id="accessCode" placeholder="Enter Code">
+    <button onclick="verifyAccess()">Enter</button>
+</div>
 
 <div class="page">
 <div class="problem-box">
 
 <h2>Question 2 – Medium</h2>
 
-<p><b>Problem:</b> Refactor the following code to improve efficiency and readability without changing the output.</p>
+<p><b>Problem:</b> Refactor the following code without changing its output.</p>
 
 <pre>
 def groupAnagrams(words):
@@ -125,11 +132,9 @@ print(groupAnagrams(words))
 </pre>
 
 <p><b>Expected Output:</b></p>
-<pre>
-[['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
-</pre>
+<pre>[['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]</pre>
 
-<p><b>Time Remaining:</b> 
+<p><b>Time Remaining:</b>
 <span id="timer" class="timer">30m 00s</span>
 </p>
 
@@ -141,30 +146,52 @@ print(groupAnagrams(words))
 </div>
 </div>
 
-<div id="timeUpOverlay">⏰ Round 2 Closed!</div>
+<div id="timeUpOverlay">⏰ Time's Up!</div>
 
 <script>
 
-/* SUBMIT */
+/* 🔒 Must Complete Q1 */
+if (localStorage.getItem("easyDone") !== "yes") {
+    alert("❌ Please complete Question 1 first.");
+    window.location.href = "q1.html";
+}
+
+/* 🔐 ACCESS CODE */
+const round2Code = "R2SELECT2026";   // 🔥 CHANGE THIS AFTER SELECTION
+
+function verifyAccess() {
+    const entered = document.getElementById("accessCode").value;
+
+    if (entered === round2Code) {
+        document.getElementById("accessScreen").style.display = "none";
+        document.querySelector(".problem-box").style.display = "block";
+        startTimer(30);  // Start timer only after access granted
+    } else {
+        alert("❌ Invalid Access Code");
+    }
+}
+
+/* 📤 SUBMIT */
 function submitMedium() {
     window.open("https://forms.gle/NY3U15arxQfRU1dCA", "_blank");
     localStorage.setItem("mediumSubmitted", "yes");
 }
 
-/* NEXT CONTROL */
+/* 🔓 NEXT BUTTON CONTROL */
 function confirmMedium() {
+
     let submitted = localStorage.getItem("mediumSubmitted");
 
     if (submitted === "yes") {
-        alert("Level 2 completed!");
-        localStorage.setItem("round3Access", "granted");
+        alert("Level 2 completed! Level 3 unlocked.");
+        localStorage.setItem("mediumDone", "yes");
         window.location.href = "q3.html";
     } else {
-        alert("⚠ Please submit your code before proceeding.");
+        alert("⚠ Please submit your code before moving forward!");
     }
 }
 
-/* TIMER */
+/* ⏳ TIMER FUNCTION */
 function startTimer(minutes) {
 
     let timeLeft = minutes * 60;
@@ -175,7 +202,9 @@ function startTimer(minutes) {
         let mins = Math.floor(timeLeft / 60);
         let secs = timeLeft % 60;
 
-        if (secs < 10) secs = "0" + secs;
+        if (secs < 10) {
+            secs = "0" + secs;
+        }
 
         timerDisplay.textContent = mins + "m " + secs + "s";
 
@@ -183,22 +212,16 @@ function startTimer(minutes) {
 
         if (timeLeft < 0) {
             clearInterval(countdown);
-            timerDisplay.textContent = "Round 2 Closed";
+            timerDisplay.textContent = "Time Over!";
 
             document.getElementById("timeUpOverlay").style.display = "flex";
-
             document.getElementById("submitBtn").disabled = true;
             document.getElementById("nextBtn").disabled = true;
-
-            localStorage.setItem("round2Closed", "yes");
         }
 
     }, 1000);
 }
-
-/* 15 MIN TIMER FOR ROUND 2 */
-startTimer(30);
-
+starttimer()
 </script>
 
 </body>
