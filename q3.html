@@ -22,6 +22,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    display: none; /* hidden until access granted */
 }
 
 pre {
@@ -79,10 +80,24 @@ button:disabled {
     justify-content: center;
     z-index: 1000;
 }
+
+/* Access Screen */
+#accessScreen {
+    text-align: center;
+    margin-top: 100px;
+}
 </style>
 </head>
 
 <body>
+
+<!-- ACCESS SCREEN -->
+<div id="accessScreen">
+    <h2>🔐 Round 3 Access</h2>
+    <p>Enter Access Code to continue</p>
+    <input type="password" id="accessCode" placeholder="Enter Code">
+    <button onclick="verifyAccess()">Enter</button>
+</div>
 
 <div class="page">
 <div class="problem-box">
@@ -118,7 +133,6 @@ def schedule(jobs):
 
     return total
 
-
 jobs = [
     ('A', 2, 100),
     ('B', 1, 19),
@@ -149,13 +163,28 @@ print(schedule(jobs))
 
 <script>
 
-/* 🔒 PROTECT LEVEL 3 */
+/* 🔒 Must Complete Q2 */
 if (localStorage.getItem("mediumDone") !== "yes") {
     alert("❌ Please complete Question 2 first.");
     window.location.href = "q2.html";
 }
 
-/* 📤 SUBMIT FUNCTION */
+/* 🔐 ACCESS CODE */
+const round3Code = "R3TOP10";  // 🔥 CHANGE THIS AFTER SELECTION
+
+function verifyAccess() {
+    const entered = document.getElementById("accessCode").value;
+
+    if (entered === round3Code) {
+        document.getElementById("accessScreen").style.display = "none";
+        document.querySelector(".problem-box").style.display = "block";
+        startTimer(50);   // start timer after correct code
+    } else {
+        alert("❌ Invalid Access Code");
+    }
+}
+
+/* 📤 SUBMIT */
 function submitHard() {
     window.open("https://forms.gle/ze7ZG3FtASNffHGu7", "_blank");
     localStorage.setItem("hardSubmitted", "yes");
@@ -163,6 +192,7 @@ function submitHard() {
 
 /* ✅ FINISH CONTROL */
 function finishChallenge() {
+
     let submitted = localStorage.getItem("hardSubmitted");
 
     if (submitted === "yes") {
@@ -203,9 +233,6 @@ function startTimer(minutes) {
 
     }, 1000);
 }
-
-/* ▶ START 30 MINUTE TIMER */
-startTimer(50);
 
 </script>
 
