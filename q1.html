@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Question 1 - Code Refactor Relay</title>
+<title>Code Relay - Question 1</title>
 
 <style>
 body {
@@ -60,9 +60,14 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* Time's Up Overlay */
+.timer {
+    font-weight: bold;
+    color: red;
+}
+
+/* TIME OVER OVERLAY */
 #timeUpOverlay {
-    display: none;
+    display: none;   /* IMPORTANT: only none here */
     position: fixed;
     top: 0;
     left: 0;
@@ -71,15 +76,9 @@ button:disabled {
     background: rgba(0,0,0,0.8);
     color: white;
     font-size: 2em;
-    display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-}
-
-.timer {
-    font-weight: bold;
-    color: red;
 }
 </style>
 </head>
@@ -113,7 +112,7 @@ def longestCommonPrefix(strs):
                 prefix = prefix[:index]
                 return prefix
 
-        index = index + 1
+        index += 1
 
     return prefix
 
@@ -124,9 +123,10 @@ print(longestCommonPrefix(strings))
 <p><b>Expected Output:</b></p>
 <pre>fl</pre>
 
-<p><b>Time Remaining:</b> <span id="timer" class="timer">--:--</span></p>
+<p><b>Time Remaining:</b> 
+<span id="timer" class="timer">20m 00s</span>
+</p>
 
-<!-- ACTION BUTTONS -->
 <div class="actions">
     <button id="submitBtn" onclick="submitEasy()">Submit Code</button>
     <button id="nextBtn" onclick="confirmEasy()">Next Challenge</button>
@@ -135,29 +135,34 @@ print(longestCommonPrefix(strings))
 </div>
 </div>
 
-<!-- Time's Up Overlay -->
 <div id="timeUpOverlay">⏰ Time's Up!</div>
 
-<!-- SCRIPT SECTION -->
 <script>
 
-/* GOOGLE FORM SUBMISSION */
+/* SUBMIT FUNCTION */
 function submitEasy() {
     window.open("https://forms.gle/yfE7m8bz8CfhAYGSA", "_blank");
+    localStorage.setItem("easySubmitted", "yes");
 }
 
-/* UNLOCK LEVEL 2 */
+/* NEXT BUTTON CONTROL */
 function confirmEasy() {
-    localStorage.setItem("easyDone", "yes");
-    alert("Level 1 completed! Level 2 unlocked.");
-    window.location.href = "q2.html";
+    let submitted = localStorage.getItem("easySubmitted");
+
+    if (submitted === "yes") {
+        alert("Level 1 completed! Level 2 unlocked.");
+        localStorage.setItem("easyDone", "yes");
+        window.location.href = "q2.html";
+    } else {
+        alert("⚠ Please submit your code before moving to next challenge!");
+    }
 }
 
 /* TIMER FUNCTION */
-function startTimer(minutes, displayId) {
+function startTimer(minutes) {
 
     let timeLeft = minutes * 60;
-    const timerDisplay = document.getElementById(displayId);
+    const timerDisplay = document.getElementById("timer");
 
     const countdown = setInterval(function() {
 
@@ -176,10 +181,8 @@ function startTimer(minutes, displayId) {
             clearInterval(countdown);
             timerDisplay.textContent = "Time Over!";
 
-            // Show overlay
             document.getElementById("timeUpOverlay").style.display = "flex";
 
-            // Disable buttons
             document.getElementById("submitBtn").disabled = true;
             document.getElementById("nextBtn").disabled = true;
         }
@@ -187,8 +190,8 @@ function startTimer(minutes, displayId) {
     }, 1000);
 }
 
-// Start 20-minute timer for Q1
-startTimer(20, "timer");
+/* START 20 MINUTE TIMER */
+startTimer(20);
 
 </script>
 
