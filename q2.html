@@ -157,7 +157,7 @@ if (localStorage.getItem("easyDone") !== "yes") {
 }
 
 /* 🔐 ACCESS CODE */
-const round2Code = "R2SELECT2026";   // 🔥 CHANGE THIS AFTER SELECTION
+const round2Code = "R2SELECT2026";   // CHANGE AFTER SELECTION
 
 function verifyAccess() {
     const entered = document.getElementById("accessCode").value;
@@ -165,11 +165,45 @@ function verifyAccess() {
     if (entered === round2Code) {
         document.getElementById("accessScreen").style.display = "none";
         document.querySelector(".problem-box").style.display = "block";
-        startTimer(30);  // Start timer only after access granted
+
+        enterFullScreen();   // 🔥 FULL SCREEN
+        startTimer(30);      // Start timer
     } else {
         alert("❌ Invalid Access Code");
     }
 }
+
+/* 🔥 FULL SCREEN FUNCTION */
+function enterFullScreen() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    }
+}
+
+/* 🚨 Detect Exit Full Screen */
+document.addEventListener("fullscreenchange", function () {
+    if (!document.fullscreenElement) {
+        alert("⚠ Do not exit full screen during the challenge!");
+        enterFullScreen();
+    }
+});
+
+/* 🚨 Detect Tab Switch */
+document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+        alert("⚠ Tab switching detected!");
+    }
+});
+
+/* 🚫 Disable Right Click */
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+
+/* 🚫 Disable Copy */
+document.addEventListener("copy", function (e) {
+    e.preventDefault();
+});
 
 /* 📤 SUBMIT */
 function submitMedium() {
@@ -221,8 +255,5 @@ function startTimer(minutes) {
 
     }, 1000);
 }
-starttimer()
-</script>
 
-</body>
-</html>
+</script>
