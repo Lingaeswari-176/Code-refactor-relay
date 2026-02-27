@@ -183,7 +183,37 @@ function verifyAccess() {
         alert("❌ Invalid Access Code");
     }
 }
+/* 🔥 FULL SCREEN FUNCTION */
+function enterFullScreen() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    }
+}
 
+/* 🚨 Detect Exit Full Screen */
+document.addEventListener("fullscreenchange", function () {
+    if (!document.fullscreenElement) {
+        alert("⚠ Do not exit full screen during the challenge!");
+        enterFullScreen();
+    }
+});
+
+/* 🚨 Detect Tab Switch */
+document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+        alert("⚠ Tab switching detected!");
+    }
+});
+
+/* 🚫 Disable Right Click */
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+
+/* 🚫 Disable Copy */
+document.addEventListener("copy", function (e) {
+    e.preventDefault();
+});
 /* 📤 SUBMIT */
 function submitHard() {
     window.open("https://forms.gle/ze7ZG3FtASNffHGu7", "_blank");
