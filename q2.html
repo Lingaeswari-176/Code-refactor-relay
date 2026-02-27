@@ -173,20 +173,6 @@ function verifyAccess() {
     }
 }
 
-/* 🔥 FULL SCREEN FUNCTION */
-function enterFullScreen() {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    }
-}
-
-/* 🚨 Detect Exit Full Screen */
-document.addEventListener("fullscreenchange", function () {
-    if (!document.fullscreenElement) {
-        alert("⚠ Do not exit full screen during the challenge!");
-        enterFullScreen();
-    }
-});
 
 /* 🚨 Detect Tab Switch */
 document.addEventListener("visibilitychange", function () {
