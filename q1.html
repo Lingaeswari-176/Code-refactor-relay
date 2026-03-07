@@ -1,91 +1,107 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <title>Code Relay - Question 1</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 20px;
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+padding:20px;
 }
 
-.page {
-    max-width: 900px;
-    margin: auto;
+.page{
+max-width:1000px;
+margin:auto;
 }
 
-.problem-box {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+.problem-box{
+background:white;
+padding:20px;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
-pre {
-    background: #272822;
-    color: #f8f8f2;
-    padding: 15px;
-    border-radius: 5px;
-    overflow-x: auto;
+pre{
+background:#272822;
+color:#f8f8f2;
+padding:15px;
+border-radius:5px;
+overflow-x:auto;
 }
 
-.actions {
-    margin-top: 20px;
+#editor{
+height:350px;
+border:1px solid #ccc;
+margin-top:20px;
 }
 
-button {
-    padding: 10px 15px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+button{
+padding:10px 15px;
+margin-top:15px;
+margin-right:10px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-weight:bold;
 }
 
-#submitBtn {
-    background-color: #3498db;
-    color: white;
+#runBtn{
+background:#f39c12;
+color:white;
 }
 
-#nextBtn {
-    background-color: #2ecc71;
-    color: white;
+#submitBtn{
+background:#3498db;
+color:white;
 }
 
-button:disabled {
-    background-color: grey;
-    cursor: not-allowed;
+#nextBtn{
+background:#2ecc71;
+color:white;
 }
 
-.timer {
-    font-weight: bold;
-    color: red;
+.timer{
+font-weight:bold;
+color:red;
 }
 
-/* TIME OVER OVERLAY */
-#timeUpOverlay {
-    display: none;   /* IMPORTANT: only none here */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    font-size: 2em;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+#outputBox{
+background:black;
+color:#00ff00;
+padding:10px;
+margin-top:15px;
+min-height:60px;
 }
+
+#timeUpOverlay{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+color:white;
+font-size:2em;
+align-items:center;
+justify-content:center;
+z-index:1000;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="page">
+
 <div class="problem-box">
 
 <h2>Question 1 – Easy</h2>
@@ -93,43 +109,26 @@ button:disabled {
 <p><b>Problem:</b> Refactor the following code without changing its output.</p>
 
 <pre>
-def longestCommonPrefix(strs):
-    if len(strs) == 0:
-        return ""
-
-    prefix = strs[0]
-    index = 0
-
-    while index < len(prefix):
-        ch = prefix[index]
-
-        for word in strs:
-            if index >= len(word):
-                prefix = prefix[:index]
-                return prefix
-
-            if word[index] != ch:
-                prefix = prefix[:index]
-                return prefix
-
-        index += 1
-
-    return prefix
-
-strings = ["flower", "flow", "flight"]
-print(longestCommonPrefix(strings))
+strings = ["flower","flow","flight"]
+Expected Output → fl
 </pre>
 
-<p><b>Expected Output:</b></p>
-<pre>fl</pre>
-
-<p><b>Time Remaining:</b> 
+<p><b>Time Remaining:</b>
 <span id="timer" class="timer">20m 00s</span>
 </p>
 
+<h3>Write your code</h3>
+
+<div id="editor"></div>
+
+<button id="runBtn" onclick="runCode()">Run Code</button>
+
+<h3>Output</h3>
+<pre id="outputBox">Output will appear here...</pre>
+
 <div class="actions">
-    <button id="submitBtn" onclick="submitEasy()">Submit Code</button>
-    <button id="nextBtn" onclick="confirmEasy()">Next Challenge</button>
+<button id="submitBtn" onclick="submitEasy()">Submit Code</button>
+<button id="nextBtn" onclick="confirmEasy()">Next Challenge</button>
 </div>
 
 </div>
@@ -137,96 +136,135 @@ print(longestCommonPrefix(strings))
 
 <div id="timeUpOverlay">⏰ Time's Up!</div>
 
+<script src="https://unpkg.com/monaco-editor@0.34.1/min/vs/loader.js"></script>
+
 <script>
-/* 🔥 FULL SCREEN FUNCTION */
-function enterFullScreen() {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    }
-}
 
-/* 🚨 Detect Exit Full Screen */
-document.addEventListener("fullscreenchange", function () {
-    if (!document.fullscreenElement) {
-        alert("⚠ Do not exit full screen during the challenge!");
-        enterFullScreen();
-    }
+require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@0.34.1/min/vs' }});
+
+require(['vs/editor/editor.main'], function () {
+
+window.editor = monaco.editor.create(document.getElementById('editor'), {
+
+value:`def longestCommonPrefix(strs):
+    pass
+
+print(longestCommonPrefix(["flower","flow","flight"]))`,
+
+language:"python",
+theme:"vs-dark"
+
 });
 
-/* 🚨 Detect Tab Switch */
-document.addEventListener("visibilitychange", function () {
-    if (document.hidden) {
-        alert("⚠ Tab switching detected!");
-    }
 });
 
-/* 🚫 Disable Right Click */
-document.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
+
+/* Run Code (temporary local simulation) */
+
+function runCode(){
+
+let code = editor.getValue();
+
+let output = "fl";
+
+document.getElementById("outputBox").textContent = output;
+
+if(output.trim()=="fl"){
+
+alert("Correct Output");
+
+}
+
+}
+
+
+/* Google form submission */
+
+function submitEasy(){
+
+window.open("https://forms.gle/yfE7m8bz8CfhAYGSA","_blank");
+
+localStorage.setItem("easySubmitted","yes");
+
+}
+
+
+/* Next challenge check */
+
+function confirmEasy(){
+
+let submitted = localStorage.getItem("easySubmitted");
+
+if(submitted==="yes"){
+
+alert("Level 1 completed!");
+
+window.location.href="q2.html";
+
+}
+else{
+
+alert("Submit code first!");
+
+}
+
+}
+
+
+/* Anti-cheat */
+
+document.addEventListener("visibilitychange",function(){
+
+if(document.hidden){
+
+alert("Tab switching detected!");
+
+}
+
 });
 
-/* 🚫 Disable Copy */
-document.addEventListener("copy", function (e) {
-    e.preventDefault();
+document.addEventListener("contextmenu",function(e){
+
+e.preventDefault();
+
 });
 
-/* SUBMIT FUNCTION */
-function submitEasy() {
-    window.open("https://forms.gle/yfE7m8bz8CfhAYGSA", "_blank");
-    localStorage.setItem("easySubmitted", "yes");
+
+/* Timer */
+
+function startTimer(minutes){
+
+let timeLeft=minutes*60;
+
+const timerDisplay=document.getElementById("timer");
+
+const countdown=setInterval(function(){
+
+let mins=Math.floor(timeLeft/60);
+
+let secs=timeLeft%60;
+
+if(secs<10) secs="0"+secs;
+
+timerDisplay.textContent=mins+"m "+secs+"s";
+
+timeLeft--;
+
+if(timeLeft<0){
+
+clearInterval(countdown);
+
+document.getElementById("timeUpOverlay").style.display="flex";
+
 }
 
-/* NEXT BUTTON CONTROL */
-function confirmEasy() {
-    let submitted = localStorage.getItem("easySubmitted");
+},1000);
 
-    if (submitted === "yes") {
-        alert("Level 1 completed! Level 2 unlocked.");
-        localStorage.setItem("easyDone", "yes");
-        window.location.href = "q2.html";
-    } else {
-        alert("⚠ Please submit your code before moving to next challenge!");
-    }
 }
 
-/* TIMER FUNCTION */
-function startTimer(minutes) {
-
-    let timeLeft = minutes * 60;
-    const timerDisplay = document.getElementById("timer");
-
-    const countdown = setInterval(function() {
-
-        let mins = Math.floor(timeLeft / 60);
-        let secs = timeLeft % 60;
-
-        if (secs < 10) {
-            secs = "0" + secs;
-        }
-
-        timerDisplay.textContent = mins + "m " + secs + "s";
-
-        timeLeft--;
-
-        if (timeLeft < 0) {
-            clearInterval(countdown);
-            timerDisplay.textContent = "Time Over!";
-
-            document.getElementById("timeUpOverlay").style.display = "flex";
-
-            document.getElementById("submitBtn").disabled = true;
-            document.getElementById("nextBtn").disabled = true;
-        }
-
-    }, 1000);
-}
-
-/* START 20 MINUTE TIMER */
 startTimer(20);
 
 </script>
-
-<script type="module" src="firebase.js"></script>
 
 </body>
 </html>
