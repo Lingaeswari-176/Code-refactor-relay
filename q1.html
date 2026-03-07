@@ -109,6 +109,28 @@ z-index:1000;
 <p><b>Problem:</b> Refactor the following code without changing its output.</p>
 
 <pre>
+def longestCommonPrefix(strs):
+    if len(strs) == 0:
+        return ""
+
+    prefix = strs[0]
+    index = 0
+
+    while index < len(prefix):
+        ch = prefix[index]
+
+        for word in strs:
+            if index >= len(word):
+                prefix = prefix[:index]
+                return prefix
+
+            if word[index] != ch:
+                prefix = prefix[:index]
+                return prefix
+
+        index += 1
+
+    return prefix
 strings = ["flower","flow","flight"]
 Expected Output → fl
 </pre>
