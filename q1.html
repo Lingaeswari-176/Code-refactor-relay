@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Code Relay - Question 1</title>
 
+<script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+
 <style>
 
 body{
@@ -61,11 +63,6 @@ background:#3498db;
 color:white;
 }
 
-#nextBtn{
-background:#2ecc71;
-color:white;
-}
-
 .timer{
 font-weight:bold;
 color:red;
@@ -76,22 +73,8 @@ background:black;
 color:#00ff00;
 padding:10px;
 margin-top:15px;
-min-height:60px;
-}
-
-#timeUpOverlay{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-color:white;
-font-size:2em;
-align-items:center;
-justify-content:center;
-z-index:1000;
+min-height:80px;
+white-space:pre-wrap;
 }
 
 </style>
@@ -109,30 +92,11 @@ z-index:1000;
 <p><b>Problem:</b> Refactor the following code without changing its output.</p>
 
 <pre>
-def longestCommonPrefix(strs):
-    if len(strs) == 0:
-        return ""
+Input:
+["flower","flow","flight"]
 
-    prefix = strs[0]
-    index = 0
-
-    while index < len(prefix):
-        ch = prefix[index]
-
-        for word in strs:
-            if index >= len(word):
-                prefix = prefix[:index]
-                return prefix
-
-            if word[index] != ch:
-                prefix = prefix[:index]
-                return prefix
-
-        index += 1
-
-    return prefix
-strings = ["flower","flow","flight"]
-Expected Output → fl
+Expected Output:
+fl
 </pre>
 
 <p><b>Time Remaining:</b>
@@ -148,19 +112,16 @@ Expected Output → fl
 <h3>Output</h3>
 <pre id="outputBox">Output will appear here...</pre>
 
-<div class="actions">
-<button id="submitBtn" onclick="submitEasy()">Submit Code</button>
-<button id="nextBtn" onclick="confirmEasy()">Next Challenge</button>
-</div>
+<button id="submitBtn" onclick="submitCode()">Submit Code</button>
 
 </div>
 </div>
-
-<div id="timeUpOverlay">⏰ Time's Up!</div>
 
 <script src="https://unpkg.com/monaco-editor@0.34.1/min/vs/loader.js"></script>
 
 <script>
+
+/* Monaco Editor */
 
 require.config({ paths: { vs: 'https://unpkg.com/monaco-editor@0.34.1/min/vs' }});
 
@@ -169,7 +130,15 @@ require(['vs/editor/editor.main'], function () {
 window.editor = monaco.editor.create(document.getElementById('editor'), {
 
 value:`def longestCommonPrefix(strs):
-    pass
+
+    prefix = strs[0]
+
+    for i in range(len(prefix)):
+        for word in strs:
+            if i >= len(word) or word[i] != prefix[i]:
+                return prefix[:i]
+
+    return prefix
 
 print(longestCommonPrefix(["flower","flow","flight"]))`,
 
@@ -180,77 +149,140 @@ theme:"vs-dark"
 
 });
 
+/* Pyodide */
 
-/* Run Code (temporary local simulation) */
+let pyodide;
 
-function runCode(){
+async function loadPython(){
+pyodide = await loadPyodide();
+}
+
+loadPython();
+
+/* Test Cases */
+
+let tests = [
+
+{input:'["flower","flow","flight"]',expected:"fl"},
+{input:'["dog","racecar","car"]',expected:""},
+{input:'["interview","internet"]',expected:"inter"}
+
+];
+
+let allPassed=false;
+
+/* Run Code */
+
+async function runCode(){
 
 let code = editor.getValue();
 
-let output = "fl";
+let passed = 0;
+let outputText = "";
 
-document.getElementById("outputBox").textContent = output;
+for(let t of tests){
 
-if(output.trim()=="fl"){
+try{
 
-alert("Correct Output");
+let runCode = code.replace(
+/print\(.*\)/,
+`print(longestCommonPrefix(${t.input}))`
+);
 
-}
+let result = await pyodide.runPythonAsync(runCode);
 
-}
+let out = result ? result.toString().trim() : "";
 
+if(out === t.expected){
 
-/* Google form submission */
-
-function submitEasy(){
-
-window.open("https://forms.gle/yfE7m8bz8CfhAYGSA","_blank");
-
-localStorage.setItem("easySubmitted","yes");
-
-}
-
-
-/* Next challenge check */
-
-function confirmEasy(){
-
-let submitted = localStorage.getItem("easySubmitted");
-
-if(submitted==="yes"){
-
-alert("Level 1 completed!");
-
-window.location.href="q2.html";
+passed++;
+outputText += `Test Passed → ${t.input} → ${out}\n`;
 
 }
 else{
 
-alert("Submit code first!");
+outputText += `Test Failed → ${t.input}\nExpected: ${t.expected}\nGot: ${out}\n\n`;
 
 }
 
 }
 
+catch(err){
 
-/* Anti-cheat */
-
-document.addEventListener("visibilitychange",function(){
-
-if(document.hidden){
-
-alert("Tab switching detected!");
+outputText += err + "\n";
 
 }
+
+}
+
+document.getElementById("outputBox").textContent = outputText;
+
+if(passed === tests.length){
+
+allPassed=true;
+alert("All Test Cases Passed!");
+
+}
+else{
+
+allPassed=false;
+alert("Some Test Cases Failed");
+
+}
+
+}
+
+</script>
+
+<!-- Firebase submission -->
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import { collection, addDoc }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+window.submitCode = async function(){
+
+if(!allPassed){
+
+alert("You must pass all test cases before submitting!");
+
+return;
+
+}
+
+let code = editor.getValue();
+
+let team = localStorage.getItem("teamName") || "unknown";
+
+try{
+
+await addDoc(collection(db,"submissions"),{
+
+team:team,
+question:"Q1",
+code:code,
+time:new Date()
 
 });
 
-document.addEventListener("contextmenu",function(e){
+alert("Code submitted successfully!");
 
-e.preventDefault();
+}
+catch(e){
 
-});
+alert("Submission failed");
+console.error(e);
 
+}
+
+}
+
+</script>
+
+<script>
 
 /* Timer */
 
@@ -263,7 +295,6 @@ const timerDisplay=document.getElementById("timer");
 const countdown=setInterval(function(){
 
 let mins=Math.floor(timeLeft/60);
-
 let secs=timeLeft%60;
 
 if(secs<10) secs="0"+secs;
@@ -275,8 +306,7 @@ timeLeft--;
 if(timeLeft<0){
 
 clearInterval(countdown);
-
-document.getElementById("timeUpOverlay").style.display="flex";
+alert("Time's Up!");
 
 }
 
