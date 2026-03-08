@@ -2,99 +2,92 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Code Relay - Question 2</title>
+<title>Code Relay - Question 1</title>
 
 <style>
-body {
+
+body{
     font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 20px;
+    background-color:#f4f6f9;
+    margin:0;
+    padding:20px;
 }
 
-.page {
-    max-width: 900px;
-    margin: auto;
+.page{
+    max-width:900px;
+    margin:auto;
 }
 
-.problem-box {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    display: none; /* Hidden until access granted */
+.problem-box{
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.1);
 }
 
-pre {
-    background: #272822;
-    color: #f8f8f2;
-    padding: 15px;
-    border-radius: 5px;
-    overflow-x: auto;
+pre{
+    background:#272822;
+    color:#f8f8f2;
+    padding:15px;
+    border-radius:5px;
+    overflow-x:auto;
 }
 
-.actions {
-    margin-top: 20px;
+.actions{
+    margin-top:20px;
 }
 
-button {
-    padding: 10px 15px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+button{
+    padding:10px 15px;
+    margin-right:10px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-#submitBtn {
-    background-color: #3498db;
-    color: white;
+#submitBtn{
+    background-color:#3498db;
+    color:white;
 }
 
-#nextBtn {
-    background-color: #2ecc71;
-    color: white;
+#nextBtn{
+    background-color:#2ecc71;
+    color:white;
 }
 
-button:disabled {
-    background-color: grey;
-    cursor: not-allowed;
+button:disabled{
+    background-color:grey;
+    cursor:not-allowed;
 }
 
-.timer {
-    font-weight: bold;
-    color: red;
+.timer{
+    font-weight:bold;
+    color:red;
 }
 
-#timeUpOverlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    font-size: 2em;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+#timeUpOverlay{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    color:white;
+    font-size:2em;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
 }
 
-/* Access Screen */
-#accessScreen {
-    text-align: center;
-    margin-top: 100px;
-}
 </style>
 </head>
 
 <body>
 
-<!-- ACCESS SCREEN -->
-
-
 <div class="page">
+
 <div class="problem-box">
 
 <h2>Question 1 – Easy</h2>
@@ -128,6 +121,7 @@ print(result)
 </pre>
 
 <p><b>Expected Output:</b></p>
+
 <pre>fl</pre>
 
 <p><b>Time Remaining:</b>
@@ -135,107 +129,139 @@ print(result)
 </p>
 
 <div class="actions">
-    <button id="submitBtn" onclick="submitMedium()">Submit Code</button>
-    <button id="nextBtn" onclick="confirmMedium()">Next Challenge</button>
+
+<button id="submitBtn" onclick="submitEasy()">Submit Code</button>
+
+<button id="nextBtn" onclick="confirmEasy()">Next Challenge</button>
+
 </div>
 
 </div>
 </div>
 
-<div id="timeUpOverlay">⏰ Time's Up!</div>
 
+<div id="timeUpOverlay">
+⏰ Time's Up!
+</div>
 <script>
 
-/* 🔒 Must Complete Q1 */
-if (localStorage.getItem("easyDone") !== "yes") {
-    alert("❌ Please complete Question 1 first.");
-    window.location.href = "q1.html";
-}
+/* Start Fullscreen Automatically */
 
-/* 🔐 ACCESS CODE */
-const round2Code = "R2SELECT2026";   // CHANGE AFTER SELECTION
+window.onload=function(){
 
-function verifyAccess() {
-    const entered = document.getElementById("accessCode").value;
+enterFullScreen();
 
-    if (entered === round2Code) {
-        document.getElementById("accessScreen").style.display = "none";
-        document.querySelector(".problem-box").style.display = "block";
+startTimer(20);
 
-        enterFullScreen();   // 🔥 FULL SCREEN
-        startTimer(20);      // Start timer
-    } else {
-        alert("❌ Invalid Access Code");
-    }
 }
 
 
-/* 🚨 Detect Tab Switch */
-document.addEventListener("visibilitychange", function () {
-    if (document.hidden) {
-        alert("⚠ Tab switching detected!");
-    }
+
+/* 
+
+
+
+
+/* Detect Tab Switch */
+
+document.addEventListener("visibilitychange",function(){
+
+if(document.hidden){
+alert("⚠ Tab switching detected!");
+}
+
 });
 
-/* 🚫 Disable Right Click */
-document.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
+
+/* Disable Right Click */
+
+document.addEventListener("contextmenu",function(e){
+e.preventDefault();
 });
 
-/* 🚫 Disable Copy */
-document.addEventListener("copy", function (e) {
-    e.preventDefault();
+
+/* Disable Copy */
+
+document.addEventListener("copy",function(e){
+e.preventDefault();
 });
 
-/* 📤 SUBMIT */
-function submitMedium() {
-    window.open("https://forms.gle/yfE7m8bz8CfhAYGSA", "_blank");
-    localStorage.setItem("mediumSubmitted", "yes");
+
+/* Submit */
+
+function submitEasy(){
+
+window.open("https://forms.gle/yfE7m8bz8CfhAYGSA","_blank");
+
+localStorage.setItem("easySubmitted","yes");
+
 }
 
-/* 🔓 NEXT BUTTON CONTROL */
-function confirmMedium() {
 
-    let submitted = localStorage.getItem("mediumSubmitted");
+/* Next Button */
 
-    if (submitted === "yes") {
-        alert("Level 1 completed! Level 2 unlocked.");
-        localStorage.setItem("mediumDone", "yes");
-        window.location.href = "q2.html";
-    } else {
-        alert("⚠ Please submit your code before moving forward!");
-    }
+function confirmEasy(){
+
+let submitted=localStorage.getItem("easySubmitted");
+
+if(submitted==="yes"){
+
+alert("Level 1 completed! Level 2 unlocked.");
+
+localStorage.setItem("easyDone","yes");
+
+window.location.href="q2.html";
+
 }
 
-/* ⏳ TIMER FUNCTION */
-function startTimer(minutes) {
+else{
 
-    let timeLeft = minutes * 60;
-    const timerDisplay = document.getElementById("timer");
+alert("⚠ Please submit your code before moving forward!");
 
-    const countdown = setInterval(function() {
+}
 
-        let mins = Math.floor(timeLeft / 60);
-        let secs = timeLeft % 60;
+}
 
-        if (secs < 10) {
-            secs = "0" + secs;
-        }
 
-        timerDisplay.textContent = mins + "m " + secs + "s";
+/* Timer */
 
-        timeLeft--;
+function startTimer(minutes){
 
-        if (timeLeft < 0) {
-            clearInterval(countdown);
-            timerDisplay.textContent = "Time Over!";
+let timeLeft=minutes*60;
 
-            document.getElementById("timeUpOverlay").style.display = "flex";
-            document.getElementById("submitBtn").disabled = true;
-            document.getElementById("nextBtn").disabled = true;
-        }
+const timerDisplay=document.getElementById("timer");
 
-    }, 1000);
+const countdown=setInterval(function(){
+
+let mins=Math.floor(timeLeft/60);
+let secs=timeLeft%60;
+
+if(secs<10){
+secs="0"+secs;
+}
+
+timerDisplay.textContent=mins+"m "+secs+"s";
+
+timeLeft--;
+
+if(timeLeft<0){
+
+clearInterval(countdown);
+
+timerDisplay.textContent="Time Over!";
+
+document.getElementById("timeUpOverlay").style.display="flex";
+
+document.getElementById("submitBtn").disabled=true;
+document.getElementById("nextBtn").disabled=true;
+
+}
+
+},1000);
+
 }
 
 </script>
+
+</body>
+</html>
