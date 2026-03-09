@@ -104,7 +104,7 @@ button:disabled {
 
 <h2>Question 2 – Medium</h2>
 
-<p><b>Problem:</b> Refactor the following code without changing its output.</p>
+<p><b>Problem:</b> Refactor the following code to make it more readable and efficient without changing its output</p>
 
 <pre>
 def groupAnagrams(words):
@@ -167,12 +167,24 @@ function verifyAccess() {
         document.querySelector(".problem-box").style.display = "block";
 
         enterFullScreen();   // 🔥 FULL SCREEN
-        startTimer(30);      // Start timer
+        startTimer(30);      // ⏳ TIMER START
     } else {
         alert("❌ Invalid Access Code");
     }
 }
 
+/* 🔥 FULL SCREEN FUNCTION */
+function enterFullScreen() {
+    let elem = document.documentElement;
+
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+    }
+}
 
 /* 🚨 Detect Tab Switch */
 document.addEventListener("visibilitychange", function () {
@@ -243,3 +255,4 @@ function startTimer(minutes) {
 }
 
 </script>
+        
