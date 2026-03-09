@@ -92,7 +92,7 @@ button:disabled{
 
 <h2>Question 1 – Easy</h2>
 
-<p><b>Problem:</b> Refactor the following code without changing its output.</p>
+<p><b>Problem:</b> Refactor the following code to make it more readable and efficient without changing its output.</p>
 
 <pre>
 def longestCommonPrefix(strs):
@@ -121,7 +121,6 @@ print(result)
 </pre>
 
 <p><b>Expected Output:</b></p>
-
 <pre>fl</pre>
 
 <p><b>Time Remaining:</b>
@@ -139,125 +138,112 @@ print(result)
 </div>
 </div>
 
-
 <div id="timeUpOverlay">
 ⏰ Time's Up!
 </div>
+
 <script>
 
-/* Start Fullscreen Automatically */
+/* Auto Start */
 
-window.onload=function(){
-
-enterFullScreen();
-
-startTimer(20);
-
+window.onload = function(){
+    enterFullScreen();
+    startTimer(20);
 }
 
+/* Fullscreen */
 
-
-/* 
-
-
-
+function enterFullScreen(){
+    if(document.documentElement.requestFullscreen){
+        document.documentElement.requestFullscreen();
+    }
+}
 
 /* Detect Tab Switch */
 
 document.addEventListener("visibilitychange",function(){
-
-if(document.hidden){
-alert("⚠ Tab switching detected!");
-}
-
+    if(document.hidden){
+        alert("⚠ Tab switching detected!");
+    }
 });
-
 
 /* Disable Right Click */
 
 document.addEventListener("contextmenu",function(e){
-e.preventDefault();
+    e.preventDefault();
 });
-
 
 /* Disable Copy */
 
 document.addEventListener("copy",function(e){
-e.preventDefault();
+    e.preventDefault();
 });
-
 
 /* Submit */
 
 function submitEasy(){
 
-window.open("https://forms.gle/yfE7m8bz8CfhAYGSA","_blank");
+    window.open("https://forms.gle/yfE7m8bz8CfhAYGSA","_blank");
 
-localStorage.setItem("easySubmitted","yes");
-
+    localStorage.setItem("easySubmitted","yes");
 }
-
 
 /* Next Button */
 
 function confirmEasy(){
 
-let submitted=localStorage.getItem("easySubmitted");
+    let submitted = localStorage.getItem("easySubmitted");
 
-if(submitted==="yes"){
+    if(submitted === "yes"){
 
-alert("Level 1 completed! Level 2 unlocked.");
+        alert("Level 1 completed! Level 2 unlocked.");
 
-localStorage.setItem("easyDone","yes");
+        localStorage.setItem("easyDone","yes");
 
-window.location.href="q2.html";
+        window.location.href="q2.html";
+    }
 
-}
-
-else{
-
-alert("⚠ Please submit your code before moving forward!");
-
-}
+    else{
+        alert("⚠ Please submit your code before moving forward!");
+    }
 
 }
-
 
 /* Timer */
 
 function startTimer(minutes){
 
-let timeLeft=minutes*60;
+    let timeLeft = minutes * 60;
 
-const timerDisplay=document.getElementById("timer");
+    const timerDisplay = document.getElementById("timer");
 
-const countdown=setInterval(function(){
+    const countdown = setInterval(function(){
 
-let mins=Math.floor(timeLeft/60);
-let secs=timeLeft%60;
+        let mins = Math.floor(timeLeft/60);
+        let secs = timeLeft % 60;
 
-if(secs<10){
-secs="0"+secs;
-}
+        if(secs < 10){
+            secs = "0" + secs;
+        }
 
-timerDisplay.textContent=mins+"m "+secs+"s";
+        timerDisplay.textContent = mins + "m " + secs + "s";
 
-timeLeft--;
+        timeLeft--;
 
-if(timeLeft<0){
+        if(timeLeft < 0){
 
-clearInterval(countdown);
+            clearInterval(countdown);
 
-timerDisplay.textContent="Time Over!";
+            timerDisplay.textContent="Time Over!";
 
-document.getElementById("timeUpOverlay").style.display="flex";
+            document.getElementById("timeUpOverlay").style.display="flex";
 
-document.getElementById("submitBtn").disabled=true;
-document.getElementById("nextBtn").disabled=true;
+            document.getElementById("submitBtn").disabled=true;
+            document.getElementById("nextBtn").disabled=true;
 
-}
+        }
 
-},1000);
+    },1000);
 
 }
 
