@@ -160,7 +160,6 @@ print(schedule(jobs))
 </div>
 
 <div id="timeUpOverlay">⏰ Time's Up!</div>
-
 <script>
 
 /* 🔒 Must Complete Q2 */
@@ -170,39 +169,57 @@ if (localStorage.getItem("mediumDone") !== "yes") {
 }
 
 /* 🔐 ACCESS CODE */
-const round3Code = "R3TOP10";  // 🔥 CHANGE THIS AFTER SELECTION
+const round3Code = "R3TOP10";
 
 function verifyAccess() {
     const entered = document.getElementById("accessCode").value;
 
     if (entered === round3Code) {
+
         document.getElementById("accessScreen").style.display = "none";
         document.querySelector(".problem-box").style.display = "block";
-        startTimer(50);   // start timer after correct code
+
+        enterFullScreen();     // 🔥 START FULLSCREEN
+        startTimer(50);        // ⏳ START TIMER
+
     } else {
         alert("❌ Invalid Access Code");
     }
 }
+
 /* 🔥 FULL SCREEN FUNCTION */
 function enterFullScreen() {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
+
+    let elem = document.documentElement;
+
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    }
+    else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+    }
+    else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
     }
 }
 
 /* 🚨 Detect Exit Full Screen */
 document.addEventListener("fullscreenchange", function () {
+
     if (!document.fullscreenElement) {
         alert("⚠ Do not exit full screen during the challenge!");
         enterFullScreen();
     }
+
 });
 
 /* 🚨 Detect Tab Switch */
 document.addEventListener("visibilitychange", function () {
+
     if (document.hidden) {
         alert("⚠ Tab switching detected!");
     }
+
 });
 
 /* 🚫 Disable Right Click */
@@ -214,10 +231,13 @@ document.addEventListener("contextmenu", function (e) {
 document.addEventListener("copy", function (e) {
     e.preventDefault();
 });
+
 /* 📤 SUBMIT */
 function submitHard() {
+
     window.open("https://forms.gle/ze7ZG3FtASNffHGu7", "_blank");
     localStorage.setItem("hardSubmitted", "yes");
+
 }
 
 /* ✅ FINISH CONTROL */
@@ -226,11 +246,16 @@ function finishChallenge() {
     let submitted = localStorage.getItem("hardSubmitted");
 
     if (submitted === "yes") {
+
         localStorage.setItem("hardDone", "yes");
         alert("🎉 Challenge Completed Successfully!\nThank you for participating.");
+
     } else {
+
         alert("⚠ Please submit your code before finishing!");
+
     }
+
 }
 
 /* ⏳ TIMER FUNCTION */
@@ -253,18 +278,21 @@ function startTimer(minutes) {
         timeLeft--;
 
         if (timeLeft < 0) {
+
             clearInterval(countdown);
+
             timerDisplay.textContent = "Time Over!";
 
             document.getElementById("timeUpOverlay").style.display = "flex";
+
             document.getElementById("submitBtn").disabled = true;
             document.getElementById("finishBtn").disabled = true;
+
         }
 
     }, 1000);
+
 }
 
 </script>
 
-</body>
-</html>
