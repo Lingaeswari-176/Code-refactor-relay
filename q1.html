@@ -209,18 +209,41 @@ function confirmEasy(){
 
 }
 
-/* Timer */
+/* Persistent Timer */
 
 function startTimer(minutes){
 
-    let timeLeft = minutes * 60;
-
     const timerDisplay = document.getElementById("timer");
+
+    let endTime = localStorage.getItem("endTime");
+
+    if(!endTime){
+        endTime = Date.now() + minutes * 60 * 1000;
+        localStorage.setItem("endTime", endTime);
+    }
 
     const countdown = setInterval(function(){
 
-        let mins = Math.floor(timeLeft/60);
-        let secs = timeLeft % 60;
+        let remaining = endTime - Date.now();
+
+        if(remaining <= 0){
+
+            clearInterval(countdown);
+
+            timerDisplay.textContent = "Time Over!";
+
+            document.getElementById("timeUpOverlay").style.display = "flex";
+
+            document.getElementById("submitBtn").disabled = true;
+            document.getElementById("nextBtn").disabled = true;
+
+            localStorage.removeItem("endTime");
+
+            return;
+        }
+
+        let mins = Math.floor(remaining / 60000);
+        let secs = Math.floor((remaining % 60000) / 1000);
 
         if(secs < 10){
             secs = "0" + secs;
@@ -228,23 +251,7 @@ function startTimer(minutes){
 
         timerDisplay.textContent = mins + "m " + secs + "s";
 
-        timeLeft--;
-
-        if(timeLeft < 0){
-
-            clearInterval(countdown);
-
-            timerDisplay.textContent="Time Over!";
-
-            document.getElementById("timeUpOverlay").style.display="flex";
-
-            document.getElementById("submitBtn").disabled=true;
-            document.getElementById("nextBtn").disabled=true;
-
-        }
-
     },1000);
-
 }
 
 </script>
